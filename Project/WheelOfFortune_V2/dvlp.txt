@@ -1,0 +1,7 @@
+maps- clue category--done v2
+sets-
+lists- letters/phrases
+stacks- leaderboard
+queues- clues --done v1
+iterators-
+algorithms-

@@ -1,0 +1,8 @@
+maps- clue category--done v2
+sets- leaderboard done v4
+lists- letters/phrases done v3 + general code eff.
+stacks- 
+queues- clues --done v1
+
+iterators- game/ vector iter
+algorithms-shuffle- sort
