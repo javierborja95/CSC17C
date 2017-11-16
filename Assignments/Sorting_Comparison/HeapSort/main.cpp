@@ -27,13 +27,16 @@ int main(int argc, char** argv) {
     //Seed
     srand(static_cast<unsigned int>(time(0)));
     //Variables
-    int n=10000000;
+    int n=100;
     int *arr=new int[n];
     
     //Input Data
     fill(arr,n);
     //Process Data
+    int timeBeg=clock();
     heapSort(arr,n);
+    int timeEnd=clock();
+    cout<<"time: "<<(timeEnd-timeBeg)<<endl;
     //Output Data
     //disp(arr,n);
     

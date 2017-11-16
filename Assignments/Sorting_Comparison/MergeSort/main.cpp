@@ -27,15 +27,20 @@ int main(int argc, char** argv) {
     //Seed
     srand(static_cast<unsigned int>(time(0)));
     //Variables
-    int n=1000;
-    int arr[n];
+    int n=100;
+    int *arr=new int[n];
     
     //Input Data
     fill(arr,n);
     //Process Data
+    int timeBeg=clock();
     mergeSort(arr,0,n-1);
+    int timeEnd=clock();
+    cout<<"time: "<<(timeEnd-timeBeg)<<endl;
     //Output Data
-    disp(arr,n);
+    //disp(arr,n);
+    
+    delete[] arr;
     
     return 0;
 }
