@@ -10,6 +10,7 @@
 #include <iostream>  //Input/ Output Stream Library
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
 using namespace std; //Namespace of the System Libraries
 
 //User Libraries
@@ -26,16 +27,16 @@ int main(int argc, char** argv) {
     //Seed
     srand(static_cast<unsigned int>(time(0)));
     //Variables
-    int n=100;
+    int n=200000;
     int *arr=new int[n];
     
     //Input Data
     fill(arr,n);
     //Process Data
-    int timeBeg=clock();
+    auto start_time = chrono::high_resolution_clock::now();
     shellSort(arr,n);
-    int timeEnd=clock();
-    cout<<"time: "<<(timeEnd-timeBeg)<<endl;
+    auto end_time = chrono::high_resolution_clock::now();
+    cout<<chrono::duration_cast<chrono::microseconds>(end_time-start_time).count()<<":";
     //Output Data
     //disp(arr,n);
     

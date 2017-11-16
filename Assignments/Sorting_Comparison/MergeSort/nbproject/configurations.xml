@@ -35,6 +35,10 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <stripSymbols>true</stripSymbols>
+          <standard>8</standard>
+        </ccTool>
       </compileType>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
