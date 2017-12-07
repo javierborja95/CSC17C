@@ -15,56 +15,58 @@
 
 using namespace std;
 
+template<class T>
 struct node{
-    int data;
+    T data;
     node* left=NULL;
     node* right=NULL;
     int height=0;
 };
 
+template<class T>
 class Tree{
     private:
-        node *root;
+        node<T> *root;
         
         //Setter
-        node* insert(node *,int);   //Insert data as a new leaf
+        node<T>* insert(node<T> *,T);   //Insert data as a new leaf
         
         //Delete
-        void delTree(node *);       //Deletes itself
-        node* delData(node *,int);  //Delete a single node, and replace it
-        node* min(node *);      //Helper for deleting, no need for max
+        void delTree(node<T> *);       //Deletes itself
+        node<T>* delData(node<T> *,T);  //Delete a single node, and replace it
+        node<T>* min(node<T> *);      //Helper for deleting, no need for max
         
         //Display
-        void inorder(node *);       //View left-root-right
-        void preorder(node *);      //View root-left-right
-        void postorder(node *);     //View left-right-root
+        void inorder(node<T> *);       //View left-root-right
+        void preorder(node<T> *);      //View root-left-right
+        void postorder(node<T> *);     //View left-right-root
         
         //Balacing Functions
-        node* balance(node *); //Performs balancing based on bottom conditions
-        node* LL(node *);      //1 Right rotation
-        node* LR(node *);      //Left rotate, then Right rotate
-        node* RL(node *);      //Right rotate, then left rotate
-        node* RR(node *);      //1 Left rotation
-        int height(node *leaf)  //Helper to keep tree balanced
-        {if(leaf==NULL) return -1; else return leaf->height;}
+        node<T>* balance(node<T> *); //Performs balancing based on bottom conditions
+        node<T>* LL(node<T> *);      //1 Right rotation
+        node<T>* LR(node<T> *);      //Left rotate, then Right rotate
+        node<T>* RL(node<T> *);      //Right rotate, then left rotate
+        node<T>* RR(node<T> *);      //1 Left rotation
+        int height(node<T> *leaf)  //Helper to keep tree balanced
+        {if(leaf==NULL) return -1; return leaf->height;}
         
     public:
         //Constructor
         Tree()
         {root=NULL;}
-        Tree(int data)
-        {root=insert(root,data);}
+        Tree(T data)
+        {root=NULL; root=insert(root,data);}
         
         //Destructor
         ~Tree()
         {delTree(root);}
         
         //Set
-        void insert(int data)    //Insert data as a new leaf
+        void insert(T data)    //Insert data as a new leaf
         {root=insert(root,data);}
         
         //Mutate
-        void delData(int data)
+        void delData(T data)
         {root=delData(root,data);}
         
         //Display
@@ -76,7 +78,8 @@ class Tree{
         {postorder(root); cout<<endl;}
 };
 
-void Tree::delTree(node *leaf){
+template<class T>
+void Tree<T>::delTree(node<T> *leaf){
     if(leaf!=NULL){
         delTree(leaf->left);
         delTree(leaf->right);
@@ -84,9 +87,10 @@ void Tree::delTree(node *leaf){
     }
 }
 
-node* Tree::insert(node *leaf,int data){
+template<class T>
+node<T>* Tree<T>::insert(node<T> *leaf,T data){
     if(leaf==NULL){
-        leaf=new node;
+        leaf=new node<T>;
         leaf->data=data;
     }else if(data<leaf->data){
         leaf->left=insert(leaf->left,data);
@@ -109,8 +113,9 @@ node* Tree::insert(node *leaf,int data){
     return leaf;
 }
 
-node* Tree::LL(node *leaf){
-    node *child=leaf->left;
+template<class T>
+node<T>* Tree<T>::LL(node<T> *leaf){
+    node<T> *child=leaf->left;
     leaf->left=child->right;
     child->right=leaf;
     {
@@ -126,18 +131,21 @@ node* Tree::LL(node *leaf){
     return child;
 }
 
-node* Tree::LR(node *leaf){
+template<class T>
+node<T>* Tree<T>::LR(node<T> *leaf){
     leaf->right=LL(leaf->right);
     return RR(leaf);
 }
 
-node* Tree::RL(node *leaf){
+template<class T>
+node<T>* Tree<T>::RL(node<T> *leaf){
     leaf->left=RR(leaf->left);
     return LL(leaf);
 }
 
-node* Tree::RR(node *leaf){
-    node* child=leaf->right;
+template<class T>
+node<T>* Tree<T>::RR(node<T> *leaf){
+    node<T>* child=leaf->right;
     leaf->right=child->left;
     child->left=leaf;
     {
@@ -153,13 +161,15 @@ node* Tree::RR(node *leaf){
     return child;
 }
 
-node* Tree::min(node *leaf){
+template<class T>
+node<T>* Tree<T>::min(node<T> *leaf){
     if(leaf==NULL) return NULL;
     else if(leaf->left==NULL) return leaf;
     else return min(leaf->left);
 }
 
-node* Tree::delData(node *leaf,int data){
+template<class T>
+node<T>* Tree<T>::delData(node<T> *leaf,T data){
     if(leaf == NULL) return NULL;
 
     else if(data<leaf->data) //Go left if data is less than
@@ -167,13 +177,11 @@ node* Tree::delData(node *leaf,int data){
     else if(data>leaf->data) //Go right if data is greater than
         leaf->right=delData(leaf->left, data);
     else if(leaf->left!=NULL&&leaf->right!=NULL){
-        node* temp;
-        temp=min(leaf->right);
+        node<T>* temp=min(leaf->right);
         leaf->data=temp->data;
         leaf->right=delData(leaf->right,leaf->data);
     }else{   
-        node* temp;
-        temp=leaf;
+        node<T>* temp=leaf;
         if(leaf->left==NULL)
             leaf=leaf->right;
         else if(leaf->right==NULL)
@@ -181,13 +189,15 @@ node* Tree::delData(node *leaf,int data){
         delete temp;
     }if(leaf==NULL)
         return leaf;
-
-    leaf->height = max(height(leaf->left), height(leaf->right))+1;
+    int hLeft=height(leaf->left),hRight=height(leaf->right);
+    if(hLeft>hRight) leaf->height=hLeft+1;
+    else leaf->height=hRight+1;
     leaf=balance(leaf);
     return leaf;
 }
 
-node* Tree::balance(node *leaf){
+template<class T>
+node<T>* Tree<T>::balance(node<T> *leaf){
     if(height(leaf->left)-height(leaf->right)==2){
         if(height(leaf->left->left)-height(leaf->left->right)==1)
              return RR(leaf); //Rotate left once
@@ -201,21 +211,26 @@ node* Tree::balance(node *leaf){
     return leaf;
 }
 
-void Tree::inorder(node *leaf){
+template<class T>
+void Tree<T>::inorder(node<T> *leaf){
     if(leaf!=NULL){
         inorder(leaf->left);
         cout<<leaf->data<<" ";
         inorder(leaf->right);
     }
 }
-void Tree::preorder(node *leaf){
+
+template<class T>
+void Tree<T>::preorder(node<T> *leaf){
     if(leaf!=NULL){
         cout<<leaf->data<<" ";
         preorder(leaf->left);
         preorder(leaf->right);
     }
 }
-void Tree::postorder(node *leaf){
+
+template<class T>
+void Tree<T>::postorder(node<T> *leaf){
     if(leaf!=NULL){
         postorder(leaf->left);
         postorder(leaf->right);
