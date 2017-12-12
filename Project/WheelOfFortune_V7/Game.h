@@ -20,12 +20,14 @@ using namespace std; //Namespace of the System Libraries
 //User Libraries
 #include "Player.h"
 #include "Clue.h"
+#include "Hash.h"
 
 //Variables
 const int SIZE=44; //Max Size of Char array
 
 class Game{
     private:
+        Hash table;        //A hash table full of phrases 
         Player user;       //The player
         stack <Clue> stck; //A stack of clues
         fstream in;        //Input

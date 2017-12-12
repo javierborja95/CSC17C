@@ -13,6 +13,7 @@
       <itemPath>Player.h</itemPath>
       <itemPath>RecursiveSorts.h</itemPath>
       <itemPath>Tree.h</itemPath>
+      <itemPath>hash.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -23,6 +24,7 @@
                    projectFiles="true">
       <itemPath>Clue.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
+      <itemPath>Hash.cpp</itemPath>
       <itemPath>Keyboard.cpp</itemPath>
       <itemPath>Letter.cpp</itemPath>
       <itemPath>Phrase.cpp</itemPath>
@@ -50,9 +52,6 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
-        <ccTool>
-          <standard>11</standard>
-        </ccTool>
       </compileType>
       <item path="Clue.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -61,6 +60,8 @@
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Hash.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Keyboard.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -83,6 +84,8 @@
       <item path="RecursiveSorts.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hash.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -115,6 +118,8 @@
       </item>
       <item path="Game.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Hash.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Keyboard.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Keyboard.h" ex="false" tool="3" flavor2="0">
@@ -136,6 +141,8 @@
       <item path="RecursiveSorts.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Tree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="hash.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

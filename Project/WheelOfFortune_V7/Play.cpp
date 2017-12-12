@@ -193,7 +193,7 @@ void Play::guess(Game *a){
     string answer; //Player answer
     int counter=0; //Amount of empty letters in keyboard array
     int score=30;  //Points=score*counter
-    bool win=true;
+    bool win; //true=win---false=loss
     
     //Input Data
     display();
@@ -204,20 +204,16 @@ void Play::guess(Game *a){
     for(int i=0;i<p.getSize();i++){ //Convert to uppercase
         answer[i]=static_cast<char>(toupper(answer[i]));
     }
-    for(int i=0;i<p.getSize();i++){
-        if((p.getLetter(i))!=(answer[i])){//Check to see if all letters match
-            win=false;                    //Phrase did not match answer
-        }
-    }
+    win=a->table.findElmnt(answer);
     cout<<endl;
-    for(int i=0;i<p.getSize();i++){    //Go through phrase array to add
-        if((p.getUsed(i))==false){     //points for each letter that is not used
-            counter++;
-        }
-    }
-    
+    //998133622
     //Output Data
     if(win==true){
+        for(int i=0;i<p.getSize();i++){    //Go through phrase array to add
+            if((p.getUsed(i))==false){     //points for each letter that is not used
+                counter++;
+            }
+        }
         score*=counter;
         cout<<"You gain 30 points for each hidden letter you guessed"<<endl;
         cout<<"You gain "<<score<<" points"<<endl;

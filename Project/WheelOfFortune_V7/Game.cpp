@@ -124,13 +124,14 @@ void Game::fill(){
         cout<<"CRITICAL ERROR: File opening failed"<<endl;
         exit(1);
     }
-    
+
     //Input Data
     while(in>>a){
-        in.getline(s,SIZE,'.');
+        in.getline(s,SIZE,'\r');
         temp.setCat(a);
         temp.setPhrase(s);
         arr.push_back(temp);
+        table.addElmnt(s); //Add string into hash table
     }
     
     //Process Data
@@ -148,7 +149,7 @@ void Game::lderBrd(){
     //Variables
     fstream in;             //Input from file
     int n;                  //Size of string that is read from file
-    set<Player,greater<Player>> arr;//Set of Player structures
+    set<Player,greater<Player> > arr;//Set of Player structures
     Player temp;            //Temp Player for input
     string a;               //Player inputs to continue
     in.clear();
@@ -233,7 +234,7 @@ void Game::read(){
                 in.clear();
                 in.seekg(0,ios::beg); //Go back to beginning
                 while(in>>n){         //Repeat until in can't extract a char
-                    in.getline(s,SIZE,'.');
+                    in.getline(s,SIZE,'\r');
                     if(n==i+1){
                         clue.setCat(n);
                         clue.setPhrase(s);
@@ -263,7 +264,7 @@ void Game::read(){
             in.clear();
             in.seekg(0,ios::beg); //Go back to beginning
             while(in>>n){
-                in.getline(s,SIZE,'.');
+                in.getline(s,SIZE,'\r');
                 clue.setCat(n);
                 clue.setPhrase(s);
                 array.push_back(clue);
@@ -285,7 +286,7 @@ void Game::read(){
             in.clear();
             in.seekg(0,ios::beg); //Go back to beginning
             while(in>>n){         //Repeat until in can't extract a char
-                in.getline(s,SIZE,'.');
+                in.getline(s,SIZE,'\r');
                 clue.setCat(n);
                 clue.setPhrase(s);
                 tree.insert(clue);
@@ -295,7 +296,7 @@ void Game::read(){
     }
     else{
         while(in>>n){       //Repeat until in can't extract a char
-                in.getline(s,SIZE,'.');
+                in.getline(s,SIZE,'\r');
                 clue.setCat(n); //Set category
                 clue.showCat(); //View category
                 cout<<s<<endl;  //Output string
@@ -348,7 +349,7 @@ void Game::write(){
                     for(int i=0;i<strlen(line);i++){
                         out<<static_cast<char>(toupper(line[i])); //Make uppercase
                     }
-                    out<<"."<<endl;
+                    out<<'\r';
                     cout<<"You must restart the game for effects to take effect"<<endl;
                 }
             }

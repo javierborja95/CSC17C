@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Clue.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/Hash.o \
 	${OBJECTDIR}/Keyboard.o \
 	${OBJECTDIR}/Letter.o \
 	${OBJECTDIR}/Phrase.o \
@@ -77,6 +78,11 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/Hash.o: Hash.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hash.o Hash.cpp
 
 ${OBJECTDIR}/Keyboard.o: Keyboard.cpp 
 	${MKDIR} -p ${OBJECTDIR}
